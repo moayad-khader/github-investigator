@@ -1,17 +1,12 @@
 import type { NextPage } from 'next'
-import Header from '../common/components/header';
+import Home from './home/page';
 
 
 
-const Home: NextPage = () => {
+const Root: NextPage = () => {
   return (
-    <div className="min-h-screen  w-screen flex flex-col justify-between items-center relative bg-gray-800">
-      <Header
-        handleOnChangeSearchInput={() => {}}
-      />
-    
-    </div>
+   <Home/>
   )
 }
 
-export default Home
+export default Root;
