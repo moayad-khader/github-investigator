@@ -1,7 +1,10 @@
 const getHeader = () => {
   const header = {
-    Accept: "application/json",
-    "Content-Type": "application/json"
+    "Accept": "application/vnd.github+json",
+    "Content-Type": "application/json",
+    "Authorization": "Bearer " + process.env.GITHUB_TOKEN,
+    "X-GitHub-Api-Version": "2022-11-28"
+
   };
   return header;
 };
