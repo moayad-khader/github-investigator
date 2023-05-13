@@ -1,35 +1,25 @@
-import { Search } from "lucide-react";
+import { SearchIcon } from '../icons';
 import React from "react";
 
 interface Props {
   placeholder?: string;
-  onChange: (value: string) => void;
+  handleOnChange: (value: string) => void;
 }
 
 const SearchInput: React.FC<Props> = ({
   placeholder,
-  onChange,
+  handleOnChange,
 }) => {
-  const handleOnChange = (e:any) => {
-    onChange(e.target.value);
-  };
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault;
-      }}
-      className="flex relative w-full text-white/50"
-    >
-      <button disabled className="absolute inset-y-0 left-2 text-white/25 ">
-        <Search size={20} />
-      </button>
-      <input
-        type="search"
-        className="peer py-2 pl-8 w-full bg-transparent border-2 border-white/25 rounded-lg focus:border-white/70 focus:ring-0"
-        placeholder={placeholder}
-        onChange={(e) => handleOnChange(e)}
-      />
+    <form>
+      <label htmlFor="default-search" className="text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+      <div className="lg:w-96 relative">
+        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <SearchIcon />
+        </div>
+        <input type="search" id="default-search" className="block w-full p-1 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search or jump to..." />
+      </div>
     </form>
   );
 };

@@ -1,17 +1,16 @@
 import type { NextPage } from 'next'
-import SearchInput from "../common/ui/search.input";
+import Header from '../common/components/header';
 
 
 
 const Home: NextPage = () => {
 
   return (
-   <div className="h-screen w-screen flex flex-col justify-between items-center relative">
-    <SearchInput
-      onChange={() => {}}
-
-    />
-   </div>
+    <div className="min-h-screen  w-screen flex flex-col justify-between items-center relative bg-gray-800">
+      <Header
+        handleOnChangeSearchInput={() => {}}
+      />
+    </div>
   )
 }
 

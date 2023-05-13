@@ -6,17 +6,18 @@ module.exports = {
   purge: {
     enabled: true,
     content: [
-      "./src/pages/**/*.{js,ts,jsx,tsx}",
-      "./src/common/**/*.{js,ts,jsx,tsx}"
+      "./pages/**/*.{js,ts,jsx,tsx}",
+      "./common/**/*.{js,ts,jsx,tsx}"
     ],
     options: {
       safelist: [],
     },
   },
   theme: {
-    colors: {
-      ...colors,
-    }
+    backgroundColor: (theme) => ({
+      ...theme("colors"),
+      primary: '#1C1C21'
+    }),
   },
   plugins: []
 };
