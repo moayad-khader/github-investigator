@@ -1,12 +1,12 @@
 import { Search } from "lucide-react";
 import React from "react";
 
-interface CustomSearchProps {
+interface Props {
   placeholder?: string;
   onChange: (value: string) => void;
 }
 
-export const CustomSearch: React.FC<CustomSearchProps> = ({
+const SearchInput: React.FC<Props> = ({
   placeholder,
   onChange,
 }) => {
@@ -33,3 +33,5 @@ export const CustomSearch: React.FC<CustomSearchProps> = ({
     </form>
   );
 };
+
+export default SearchInput;
