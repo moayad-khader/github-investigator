@@ -56,7 +56,7 @@ const Home: NextPage<Props> = ({
     if (dataSource === 'repositories')
       return getAllRepositories(query, 1);
     return getAllUsers(query, 1);
-  }), [setLoading, setSearchTerms, dataSource, setPage]);
+  },500), [setLoading, setSearchTerms, dataSource, setPage]);
 
 
   const handleOnChangeDataSource = useCallback((value: string) => {
@@ -90,8 +90,9 @@ const Home: NextPage<Props> = ({
               Math.ceil(usersTotalCount / GITHUB_PAGE_ITEMS_COUNT ) >= page
     if (
       scrollTop + clientHeight >= scrollHeight - 10 && 
-      isHasMore
+      isHasMore && !loading
       ) {
+      
       if (
         dataSource === 'repositories') {
         getAllRepositories(searchTerms, page);
@@ -100,6 +101,7 @@ const Home: NextPage<Props> = ({
         getAllUsers(searchTerms, page);
       }
       setPage(prevPage => page + 1)
+      setLoading(true);
     }
 
   };
@@ -114,7 +116,7 @@ const Home: NextPage<Props> = ({
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [searchTerms,page, repositoriesTotalCount])
+  }, [searchTerms,page, repositoriesTotalCount, dataSource, usersTotalCount, loading, setLoading])
 
   return (
     <div className="min-h-screen  w-screen flex flex-col justify-between items-center relative bg-gray-800" >
@@ -129,10 +131,14 @@ const Home: NextPage<Props> = ({
           error={error}
         />:null
       }
-      {
-        loading ?
-          <Skeleton />
-          : <div className="grid grid-cols-4 gap-4 p-8 pt-24 w-full">
+      
+          
+          <div className="grid grid-cols-4 gap-4 p-8 pt-24 w-full">
+
+          {
+            loading ?
+            <Skeleton/> :null
+          }
           {
             dataSource === "repositories" ?
               repositories.map(
@@ -154,9 +160,9 @@ const Home: NextPage<Props> = ({
                     htmlUrl={user.html_url}
                   />
               )
-          }
+              }
         </div>
-      }
+    
       
     </div>
   )

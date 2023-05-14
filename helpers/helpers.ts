@@ -1,7 +1,7 @@
 import { ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-const debounce = (func) => {
+const debounce = (func , ms) => {
     let timer;
     return function (...args) {
       const context = this;
@@ -9,7 +9,7 @@ const debounce = (func) => {
       timer = setTimeout(() => {
         timer = null;
         func.apply(context, args);
-      }, 500);
+      }, ms);
     };
 };
 
