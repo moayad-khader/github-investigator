@@ -12,7 +12,8 @@ export const GetAllCall = (action:any) =>
     } else {
       action.asyncDispatch({
         type: actionTypes.SET_ALL_REPOSITORIES,
-        repositories: data.items || []
+        repositories: data.items || [],
+        reset: action.page === 1
       });
     }
   });

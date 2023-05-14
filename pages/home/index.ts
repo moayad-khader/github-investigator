@@ -12,12 +12,12 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-      getAllRepositories: (query:string) =>
-        dispatch({ type: RepositoryActionTypes.GET_ALL_REPOSITORIES, query}),
+      getAllRepositories: (query:string, page:number) =>
+        dispatch({ type: RepositoryActionTypes.GET_ALL_REPOSITORIES, query, page}),
       resetRepositories: () =>
         dispatch({ type: RepositoryActionTypes.SET_ALL_REPOSITORIES, repositories: []}),
-      getAllUsers:(query:string) =>
-        dispatch({ type: UserActionTypes.GET_ALL_USERS, query}),
+      getAllUsers:(query:string, page:number) =>
+        dispatch({ type: UserActionTypes.GET_ALL_USERS, query, page}),
       resetUsers: () =>
         dispatch({ type: UserActionTypes.SET_ALL_USERS, users: []}),
     };

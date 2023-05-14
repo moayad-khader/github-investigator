@@ -12,7 +12,8 @@ export const GetAllCall = (action:any) =>
     } else {
       action.asyncDispatch({
         type: actionTypes.SET_ALL_USERS,
-        users: data.items || []
+        users: data.items || [],
+        reset: action.page === 1 
       });
     }
   });

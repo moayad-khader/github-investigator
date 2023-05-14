@@ -15,9 +15,13 @@ const reducers = (state = intialState, action: any) => {
       return { ...state };
 
     case actionTypes.SET_ALL_REPOSITORIES:
+      const repositories = 
+        action.reset ? 
+          action.repositories :
+          [... state.repositories ,...action.repositories];
       return {
         ...state,
-        repositories: action.repositories
+        repositories
       };
 
     default:

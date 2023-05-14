@@ -2,7 +2,6 @@
 import React from "react";
 
 interface Props {
-    key: string,
     fullName: string,
     language: string,
     stargazersCount: number,
@@ -11,7 +10,6 @@ interface Props {
 }
 
 const RepositoryCard: React.FC<Props> = ({
-    key,
     fullName,
     language,
     stargazersCount,
@@ -20,7 +18,7 @@ const RepositoryCard: React.FC<Props> = ({
 }) => {
  
     return (
-        <div key = {key} className="p-4 rounded-xl border border-gray-700 bg-gray-50 h-auto dark:bg-[#0d1117]">
+        <div className="p-4 rounded-xl border border-gray-700 bg-gray-50 h-auto dark:bg-[#0d1117]">
         <div className="flex justify-between items-center">
             <a target="_blank" className="text-white font-bold hover:text-blue-400" href={htmlUrl}>{fullName}</a>
          

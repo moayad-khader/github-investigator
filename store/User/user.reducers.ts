@@ -15,9 +15,13 @@ const reducers = (state = intialState, action: any) => {
       return { ...state };
 
     case actionTypes.SET_ALL_USERS:
+      const users = 
+        action.reset ? 
+          action.users :
+          [... state.users ,...action.users]
       return {
         ...state,
-        users: action.users
+        users
       };
 
     default:
