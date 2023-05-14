@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Header from 'common/components/header';
+import DocumentHead from 'common/components/documentHead';
 import RepositoryCard from 'common/components/repository.card';
 import UserCard from 'common/components/user.card';
 import Skeleton from 'common/components/skeleton';
@@ -9,7 +10,6 @@ import { IRepository } from 'store/Repository/repository.types';
 import { IUser } from 'store/User/user.types';
 import helpers from 'helpers/helpers';
 import uuid from 'react-uuid';
-import constants from '../../constants';
 
 interface Props {
   repositories: Array<IRepository>,
@@ -119,6 +119,11 @@ const Home: NextPage<Props> = ({
 
   return (
     <div className="min-h-screen  w-screen flex flex-col justify-between items-center relative bg-gray-800" >
+      <DocumentHead
+        title='Github Investigator'
+        description='GitHub Investigator is an application that allows you to search for GitHub users or repositories. With this app, you can easily explore GitHub profiles and repositories of interest.'
+        keywords='Github Investigator Search '
+      />
       <Header
         handleOnChangeSearchInput={handleOnChangeSearchInput}
         handleOnChangeDataSource={handleOnChangeDataSource}
