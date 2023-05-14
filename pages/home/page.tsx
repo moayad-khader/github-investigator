@@ -103,7 +103,6 @@ const Home: NextPage<Props> = ({
       setPage(prevPage => page + 1)
       setLoading(true);
     }
-
   };
 
   useEffect(() => {
