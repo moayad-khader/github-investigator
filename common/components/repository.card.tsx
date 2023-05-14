@@ -16,7 +16,7 @@ const RepositoryCard: React.FC<Props> = ({
     description,
     htmlUrl
 }) => {
-    const descriptionText = description.length > 40 ? description.slice(0,40).concat(" ..."):description
+    const descriptionText = description?.length > 40 ? description.slice(0,40).concat(" ..."):description
     return (
         <div className="p-4 rounded-xl border border-gray-700 bg-gray-50 h-auto dark:bg-[#0d1117] shadow-xl">
         <div className="flex justify-between items-center">

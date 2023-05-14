@@ -3,7 +3,7 @@ import * as actionTypes from "./user.actions";
 
 
 export const GetAllCall = (action:any) =>
-  api.getUsers(action.query).then((data:any) => {
+  api.getUsers(action.query,  action.page).then((data:any) => {
     console.log("data",data)
     if (data && !data.items) {
       action.asyncDispatch({

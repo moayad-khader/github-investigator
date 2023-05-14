@@ -2,9 +2,9 @@ import * as api from "apis/github.api";
 import * as actionTypes from "./repository.actions";
 
 
-export const GetAllCall = (action:any) =>
-  api.getRepositories(action.query).then((data:any) => {
-    console.log("data",data)
+export const GetAllCall = (action:any) =>{
+  return  api.getRepositories(action.query, action.page ).then((data:any) => {
+    console.log("data",data,)
     if (data && !data.items) {
       action.asyncDispatch({
         type: actionTypes.ERROR,
@@ -19,6 +19,8 @@ export const GetAllCall = (action:any) =>
       });
     }
   });
+}
+ 
 
 
 
