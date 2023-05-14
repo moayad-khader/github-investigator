@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Home from './home/page';
+import Home from './home';
 
 
 
