@@ -4,7 +4,9 @@ import type {
  
  
  const UserState: IUserState = {
-     users:[]
+     users:[],
+     error: "",
+     total_count: 0
  };
  
  export default UserState;

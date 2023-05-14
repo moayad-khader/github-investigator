@@ -5,7 +5,7 @@ import type {
  
  const RepositoryState: IRepositoryState = {
      repositories:[],
-     isLoading: false,
+     total_count: 0,
      error: ""
  };
  

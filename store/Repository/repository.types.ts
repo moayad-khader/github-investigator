@@ -92,6 +92,6 @@ export interface IRepository {
 
 export interface IRepositoryState {
     repositories: IRepository[],
-    isLoading: boolean,
+    total_count: number,
     error: string
 }

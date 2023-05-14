@@ -21,7 +21,15 @@ const reducers = (state = intialState, action: any) => {
           [... state.users ,...action.users]
       return {
         ...state,
-        users
+        users,
+        total_count: action.total_count
+      };
+
+    case actionTypes.ERROR:
+      return {
+            ...state,
+            users: [],
+            error: action.message
       };
 
     default:

@@ -21,5 +21,7 @@ export interface IUser {
 }
 
 export interface IUserState {
-    users: IUser[]
+    users: IUser[],
+    error: string,
+    total_count: number
 }

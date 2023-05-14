@@ -4,10 +4,12 @@ import Header from 'common/components/header';
 import RepositoryCard from 'common/components/repository.card';
 import UserCard from 'common/components/user.card';
 import Skeleton from 'common/components/skeleton';
+import ErrorToast from 'common/ui/error.toast';
 import { IRepository } from 'store/Repository/repository.types';
 import { IUser } from 'store/User/user.types';
 import helpers from 'helpers/helpers';
 import uuid from 'react-uuid';
+import constants from '../../constants';
 
 interface Props {
   repositories: Array<IRepository>,
@@ -15,7 +17,10 @@ interface Props {
   getAllRepositories(query: string, page: number): void,
   resetRepositories(): void,
   getAllUsers(query: string, page: number): void,
-  resetUsers(): void
+  resetUsers(): void,
+  error: string,
+  repositoriesTotalCount:number,
+  usersTotalCount: number
 }
 
 const Home: NextPage<Props> = ({
@@ -24,7 +29,10 @@ const Home: NextPage<Props> = ({
   getAllRepositories,
   getAllUsers,
   resetRepositories,
-  resetUsers
+  resetUsers,
+  error,
+  repositoriesTotalCount,
+  usersTotalCount
 }) => {
 
   const [dataSource, setDataSource] = useState('repositories');
@@ -75,15 +83,25 @@ const Home: NextPage<Props> = ({
 
   const handleScroll = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight - 10 && !loading) {
-      if (dataSource === 'repositories') {
+    const GITHUB_PAGE_ITEMS_COUNT = 30;
+    const isHasMore = 
+      dataSource === 'repositories' ?
+       Math.ceil(repositoriesTotalCount / GITHUB_PAGE_ITEMS_COUNT ) >= page :
+              Math.ceil(usersTotalCount / GITHUB_PAGE_ITEMS_COUNT ) >= page
+    if (
+      scrollTop + clientHeight >= scrollHeight - 10 && 
+      isHasMore
+      ) {
+      if (
+        dataSource === 'repositories') {
         getAllRepositories(searchTerms, page);
       }
       else{
         getAllUsers(searchTerms, page);
       }
+      setPage(prevPage => page + 1)
     }
-    setPage(prevPage => page + 1)
+
   };
 
   useEffect(() => {
@@ -92,10 +110,11 @@ const Home: NextPage<Props> = ({
     }
   }, [users, repositories, setLoading]);
 
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [searchTerms,page])
+  }, [searchTerms,page, repositoriesTotalCount])
 
   return (
     <div className="min-h-screen  w-screen flex flex-col justify-between items-center relative bg-gray-800" >
@@ -104,6 +123,12 @@ const Home: NextPage<Props> = ({
         handleOnChangeDataSource={handleOnChangeDataSource}
         dataSource={dataSource}
       />
+      {
+        Boolean(error) ? 
+        <ErrorToast
+          error={error}
+        />:null
+      }
       {
         loading ?
           <Skeleton />
