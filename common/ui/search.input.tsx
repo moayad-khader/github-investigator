@@ -1,4 +1,4 @@
-import { SearchIcon } from '../icons';
+import { Search } from "lucide-react";
 import React from "react";
 
 interface Props {
@@ -15,7 +15,10 @@ const SearchInput: React.FC<Props> = ({
     <form>
       <div className="lg:w-96 relative ">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <SearchIcon />
+          <Search
+            color="#fff"
+            size={20}
+          />
         </div>
         <input 
           type="search" 
