@@ -19,3 +19,7 @@ export interface IUser {
     events_url: string
     site_admin: boolean
 }
+
+export interface IUserState {
+    users: IUser[]
+}

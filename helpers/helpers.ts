@@ -1,3 +1,6 @@
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
 const debounce = (func) => {
     let timer;
     return function (...args) {
@@ -6,7 +9,7 @@ const debounce = (func) => {
       timer = setTimeout(() => {
         timer = null;
         func.apply(context, args);
-      }, 1000);
+      }, 500);
     };
 };
 
@@ -18,7 +21,13 @@ const pipe = (...fns) => x => {
 };
   
 
+ 
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
 export default {
     debounce,
-    pipe
+    pipe,
+    cn
 }
